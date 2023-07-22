@@ -3,62 +3,6 @@
 part of 'item_vo.dart';
 
 // **************************************************************************
-// TypeAdapterGenerator
-// **************************************************************************
-
-class ItemsAdapter extends TypeAdapter<Items> {
-  @override
-  final int typeId = 6;
-
-  @override
-  Items read(BinaryReader reader) {
-    final numOfFields = reader.readByte();
-    final fields = <int, dynamic>{
-      for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
-    };
-    return Items(
-      kind: fields[0] as String?,
-      id: fields[1] as String?,
-      selfLink: fields[2] as String?,
-      volumeInfo: fields[3] as VolumeInfo?,
-      saleInfo: fields[4] as SaleInfo?,
-      accessInfo: fields[5] as AccessInfo?,
-      searchInfo: fields[6] as SearchInfo?,
-    );
-  }
-
-  @override
-  void write(BinaryWriter writer, Items obj) {
-    writer
-      ..writeByte(7)
-      ..writeByte(0)
-      ..write(obj.kind)
-      ..writeByte(1)
-      ..write(obj.id)
-      ..writeByte(2)
-      ..write(obj.selfLink)
-      ..writeByte(3)
-      ..write(obj.volumeInfo)
-      ..writeByte(4)
-      ..write(obj.saleInfo)
-      ..writeByte(5)
-      ..write(obj.accessInfo)
-      ..writeByte(6)
-      ..write(obj.searchInfo);
-  }
-
-  @override
-  int get hashCode => typeId.hashCode;
-
-  @override
-  bool operator ==(Object other) =>
-      identical(this, other) ||
-      other is ItemsAdapter &&
-          runtimeType == other.runtimeType &&
-          typeId == other.typeId;
-}
-
-// **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 

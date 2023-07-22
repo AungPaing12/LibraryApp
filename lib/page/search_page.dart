@@ -12,6 +12,7 @@ class SearchPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    TextEditingController controller = TextEditingController();
     return Scaffold(
       body: ChangeNotifierProvider(
         create: (context) => SearchPageBloc(),
@@ -24,10 +25,13 @@ class SearchPage extends StatelessWidget {
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    TextFormField(
+                    TextField(
+                      controller: controller,
                       onChanged: (text) {
                         final instance = context.read<SearchPageBloc>();
-                        instance.searchBookList(text);
+                        if(controller.text.isNotEmpty){
+                          instance.searchBookList(text);
+                        }
                       },
                       autofocus: true,
                       decoration: InputDecoration(
@@ -49,28 +53,15 @@ class SearchPage extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SearchMovieListTileViewItem(searchBookList: bloc.getSearchBookList,),
+                    Visibility(
+                        visible: controller.text.isNotEmpty ?  true : false,
+                        child: SearchMovieListTileViewItem(searchBookList: bloc.getSearchBookList,)),
                     const SizedBox(
                       height: 20,
                     ),
-                    const IconTextViewItem(
-                      iconImage: kTopSellingImage,
-                      text: 'Top Selling',
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const IconTextViewItem(
-                      iconImage: kNewReleaseImage,
-                      text: 'New release',
-                    ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    const IconTextViewItem(
-                      iconImage: kBookShopImage,
-                      text: 'Bookshop',
-                    ),
+                    Visibility(
+                        visible: controller.text.isEmpty ?  true : false,
+                        child: const IconText())
                   ],
                 ),
               ],
@@ -126,6 +117,36 @@ class IconTextViewItem extends StatelessWidget {
           fontSize: 16,
           color: Colors.grey,
         )
+      ],
+    );
+  }
+}
+
+class IconText extends StatelessWidget {
+  const IconText({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return const Column(
+      children: [
+        IconTextViewItem(
+          iconImage: kTopSellingImage,
+          text: 'Top Selling',
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        IconTextViewItem(
+          iconImage: kNewReleaseImage,
+          text: 'New release',
+        ),
+        SizedBox(
+          height: 20,
+        ),
+        IconTextViewItem(
+          iconImage: kBookShopImage,
+          text: 'Bookshop',
+        ),
       ],
     );
   }

@@ -13,4 +13,5 @@ abstract class HomeScreenApi {
   Future<HomeScreenResponse> getHomeScreenBookList(
       @Query(kQueryParamsPublishDate) String date,
       @Query(kQueryParamsApiKey) String apiKey);
+
 }

@@ -17,15 +17,13 @@ class LibraryPage extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             mainAxisSize: MainAxisSize.min,
             children: [
-              Align(
-                  alignment: Alignment.topCenter,
-                  child: SearchPlayButtonContainer()),
               Padding(
                 padding: EdgeInsets.only(top: 10),
                 child: SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: TabBar(
+                    dividerColor: Colors.transparent,
                     labelPadding: EdgeInsets.symmetric(vertical: 0,horizontal: 50),
                     labelColor: Colors.black,
                     indicatorColor: Colors.green,
@@ -33,20 +31,20 @@ class LibraryPage extends StatelessWidget {
                     indicatorSize: TabBarIndicatorSize.label,
                     indicatorWeight: 2,
                     tabs: [
-                      Tab(text: "EBook",),
-                      Tab(text: "AudioBook",),
+                      Tab(text: "Your Book",),
+                      Tab(text: "YourShelves",),
                     ],
                   ),
                 ),
               ),
-              SizedBox(
-                width: double.infinity,
-                height: 500,
-                child: TabBarView(
-                  children: [
-                    YourBook(),
-                    YourShelves()
-                  ],
+              Expanded(
+                child: SizedBox(
+                  child: TabBarView(
+                    children: [
+                      YourBookPage(),
+                      YourShelves()
+                    ],
+                  ),
                 ),
               )
             ],

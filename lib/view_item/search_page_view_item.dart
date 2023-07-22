@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:library_app/bloc/search_page_bloc.dart';
 import 'package:provider/provider.dart';
 
+import '../constant/image_constant.dart';
 import '../page/detail_page.dart';
 import '../page/search_page.dart';
 
@@ -35,7 +36,7 @@ class SearchListTileViewItem extends StatelessWidget {
           placeholder: (context, url) =>
               Image.asset('images/tmdb_place_holder.png'),
           errorWidget: (context, url, error) =>
-              Center(child: Image.asset('images/book_place_holder.png')),
+              Center(child: Image.asset(kPlaceHolderImage)),
         ),
         title: Text(
           bookTitle,

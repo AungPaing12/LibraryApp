@@ -43,4 +43,9 @@ class BookListsVO {
 
   factory BookListsVO.fromJson(Map<String, dynamic> json) =>
       _$BookListsVOFromJson(json);
+
+  @override
+  String toString() {
+    return 'BookListsVO{listId: $listId, listName: $listName, listNameEncoded: $listNameEncoded, displayName: $displayName, updated: $updated, books: $books}';
+  }
 }

@@ -10,13 +10,12 @@ const kBookVOTypeID = 8;
 const kBookListsVOTypeID = 9;
 const kResultsVOTypeID = 10;
 const kHomeScreenResponseTypeID = 11;
-const kCastHiveTypeID =12 ;
-const kCrewHiveTypeID =13 ;
-const kMovieHiveTypeID =14 ;
+const kBookHiveTypeID =12 ;
+
 ///Box Name
-const kBoxNameForMovieVO = 'BoxNameForMovieVO';
-const kBoxNameForMovieGenreVO = 'BoxNameForMovieGenreVO';
-const kBoxNameForActorVO = 'BoxNameForActorVO';
+const kBoxNameForBookListVO = 'BoxNameForBookListVO';
+const kBoxNameForBooksVO = 'BoxNameForBooksVO';
+const kBoxNameForBookHiveVO = 'BoxNameForBookHiveVO';
 const kBoxNameForKnownForVO = 'BoxNameForKnownForVO';
 const kBoxNameForProductionCompanyVO = 'BoxNameForProductionCompanyVO';
 const kBoxNameForGenreVO = 'BoxNameForGenreVO';

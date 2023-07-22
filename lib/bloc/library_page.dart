@@ -1,21 +1,21 @@
-import 'dart:ffi';
 
 import 'package:flutter/foundation.dart';
 import 'package:library_app/data/model/library_model.dart';
 import 'package:library_app/data/model/library_model_impl.dart';
-import 'package:library_app/data/vos/item_vo/item_vo.dart';
+import 'package:library_app/data/vos/book_hive_vo/book_hive_vo.dart';
 
-class SearchPageBloc extends ChangeNotifier {
+class LibraryPageBloc extends ChangeNotifier {
   final LibraryModel _libraryModel = LibraryModelImpl();
 
-  List<Items> _searchBookList = [];
+  List<BookHiveVO> _bookHiveList = [];
   bool _dispose = false;
 
-  List<Items> get getSearchBookList => _searchBookList;
-  void searchBookList(String name) {
-    _libraryModel.getSearchBookList(name).then((value) {
-      if (value != null) {
-        _searchBookList = value;
+  List<BookHiveVO> get getBookHiveList => _bookHiveList;
+
+  LibraryPageBloc(){
+    _libraryModel.getBookHiveListFromDataBase().listen((event) {
+      if(event != null) {
+        _bookHiveList = event;
       }
       notifyListeners();
     });

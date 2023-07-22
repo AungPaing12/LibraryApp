@@ -100,6 +100,8 @@ class BooksVO {
   @HiveField(22)
   int? weeksOnList;
 
+  @HiveField(23)
+  bool isSelected ;
   BooksVO({
     this.ageGroup,
     this.amazonProductUrl,
@@ -124,7 +126,16 @@ class BooksVO {
     this.title,
     this.updatedDate,
     this.weeksOnList,
+    this.isSelected = false
   });
 
-  factory BooksVO.fromJson(Map<String,dynamic>json) => _$BooksVOFromJson(json);
+  factory BooksVO.fromJson(Map<String, dynamic> json) =>
+      _$BooksVOFromJson(json);
+
+  @override
+  String toString() {
+    return 'BooksVO{ageGroup: $ageGroup, amazonProductUrl: $amazonProductUrl, articleChapterLink: $articleChapterLink, bookImage: $bookImage,'
+        ' bookImageHeight: $bookImageHeight, description: $description, primaryIsbn10: $primaryIsbn10, rankLastWeek: $rankLastWeek,'
+        ' title: $title, updatedDate: $updatedDate}';
+  }
 }
