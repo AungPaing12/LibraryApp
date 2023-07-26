@@ -1,11 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:library_app/bloc/search_page_bloc.dart';
-import 'package:provider/provider.dart';
-
 import '../constant/image_constant.dart';
 import '../page/detail_page.dart';
-import '../page/search_page.dart';
+
 
 class SearchListTileViewItem extends StatelessWidget {
   const SearchListTileViewItem(
@@ -36,7 +33,7 @@ class SearchListTileViewItem extends StatelessWidget {
           placeholder: (context, url) =>
               Image.asset('images/tmdb_place_holder.png'),
           errorWidget: (context, url, error) =>
-              Center(child: Image.asset(kPlaceHolderImage)),
+              Center(child: Image.asset(kBookPlaceHolderImage)),
         ),
         title: Text(
           bookTitle,
@@ -52,57 +49,3 @@ class SearchListTileViewItem extends StatelessWidget {
     );
   }
 }
-
-// class SearchBookListPage extends StatelessWidget {
-//   const SearchBookListPage({Key? key}) : super(key: key);
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: ChangeNotifierProvider(
-//         create: (context) => SearchPageBloc(),
-//         child: Consumer<SearchPageBloc>(
-//           builder: (context, bloc, child) => Padding(
-//               padding: const EdgeInsets.only(top: 30),
-//               child: Stack(
-//                 children: [
-//                   Column(
-//                     mainAxisSize: MainAxisSize.min,
-//                     crossAxisAlignment: CrossAxisAlignment.start,
-//                     children: [
-//                       TextFormField(
-//                         onChanged: (text) {
-//                           final instance = context.read<SearchPageBloc>();
-//                           instance.searchBookList(text);
-//                         },
-//                         autofocus: true,
-//                         decoration: InputDecoration(
-//                           hintText: 'Search Play Books',
-//                           prefixIcon: GestureDetector(
-//                             onTap: () {
-//                               Navigator.of(context).pop();
-//                             },
-//                             child: const Icon(
-//                               Icons.arrow_back,
-//                               color: Colors.black,
-//                               size: 25,
-//                             ),
-//                           ),
-//                           suffixIcon: const Icon(
-//                             Icons.mic,
-//                             color: Colors.black,
-//                             size: 25,
-//                           ),
-//                         ),
-//                       ),
-//                       SearchMovieListTileViewItem(searchBookList: bloc.getSearchBookList,)
-//                     ],
-//                   ),
-//                 ],
-//               )
-//           ),
-//         ),
-//       ),
-//     );
-//   }
-// }

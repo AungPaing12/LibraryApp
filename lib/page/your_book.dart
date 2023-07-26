@@ -73,7 +73,7 @@ class YourBookPage extends StatelessWidget {
                                             child: Icon(Icons.image),
                                           ),
                                           placeholder: (_, holder) =>
-                                              Image.asset(kPlaceHolderImage),
+                                              Image.asset(kBookPlaceHolderImage),
                                         ))),
                                 const SizedBox(
                                   height: 5,

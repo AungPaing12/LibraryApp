@@ -36,7 +36,4 @@ class HomeScreenDaoImpl extends HomeScreenDao {
       _bookListBox().delete(bookListsVO.listId);
     }
   }
-
-
-
 }

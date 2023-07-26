@@ -31,7 +31,9 @@ class LibraryModelImpl extends LibraryModel {
 
   @override
   Future<List<BookListsVO>?> getHomeScreenBookList(publishedDate) =>
-      _homeScreenApiDataAgent.getHomeScreenBookList(publishedDate).then((value) {
+      _homeScreenApiDataAgent
+          .getHomeScreenBookList(publishedDate)
+          .then((value) {
         if (value != null) {
           _homeScreenDao.save(value);
         }
@@ -51,7 +53,13 @@ class LibraryModelImpl extends LibraryModel {
       .map((event) => _bookHiveDao.getHiveBookListFromDataBase());
 
   @override
-  void save(BookHiveVO bookHiveVO) {
+  void saveInLibrary(BookHiveVO bookHiveVO) {
     _bookHiveDao.save(bookHiveVO);
   }
+
+  @override
+  void delete(BookHiveVO bookHiveVO) {
+    _bookHiveDao.delete(bookHiveVO);
+  }
+
 }

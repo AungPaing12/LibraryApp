@@ -19,6 +19,7 @@ void main() async {
   Hive.registerAdapter(BookHiveVOAdapter());
   await Hive.openBox<BookListsVO>(kBoxNameForBookListVO);
   await Hive.openBox<BookHiveVO>(kBoxNameForBookHiveVO);
+  await Hive.openBox(kBoxNameForShelf);
   runApp(const MyApp());
   // _libraryModel.getHomeScreenBookList().then((value) => print('book=>$value')).onError((error, stackTrace) => print(error));
 }

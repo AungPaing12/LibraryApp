@@ -1,4 +1,3 @@
-
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:library_app/bloc/home_page_bloc.dart';
@@ -7,15 +6,18 @@ import 'package:library_app/data/model/library_model_impl.dart';
 import 'package:library_app/widget/easy_text_widget.dart';
 import 'package:provider/provider.dart';
 import '../data/vos/book_vo/book_vo.dart';
+import '../page/add_to_shelf_page.dart';
 import '../page/detail_page.dart';
 import 'bottom_sheet_widget.dart';
 
 final LibraryModel _libraryModel = LibraryModelImpl();
 
 class BookTitleImageScroll extends StatefulWidget {
-  const BookTitleImageScroll(
-      {Key? key, required this.bookVO, required this.bookListTitle,})
-      : super(key: key);
+  const BookTitleImageScroll({
+    Key? key,
+    required this.bookVO,
+    required this.bookListTitle,
+  }) : super(key: key);
   final List<BooksVO>? bookVO;
   final String bookListTitle;
 
@@ -25,6 +27,7 @@ class BookTitleImageScroll extends StatefulWidget {
 
 class _BookTitleImageScrollState extends State<BookTitleImageScroll> {
   List<BooksVO> books = [];
+
   @override
   void initState() {
     books = widget.bookVO!;
@@ -64,15 +67,25 @@ class _BookTitleImageScrollState extends State<BookTitleImageScroll> {
                           booksVO: books[index],
                           onTap: (bookVO) {
                             books = books.map((e) {
-                              if(e == bookVO){
+                              if (e == bookVO) {
                                 e.isSelected = true;
-                              }if(e.isSelected == true){
+                              }
+                              if (e.isSelected == true) {
                                 e.isSelected = false;
                               }
                               return e;
                             }).toList();
                             bloc.saveBookHive(bookVO);
                             print('book name=======>${bookVO.title}');
+                          },
+                          deleteOnTap: (bookVO) {
+                            bloc.deleteFromHive(bookVO);
+                          },
+                          tap: (bookVO) {
+                            bloc.saveBookHive(bookVO);
+                          },
+                          addToShelfOnTap: (bookVO) {
+                            bloc.saveBookHive(bookVO);
                           },
                         );
                       })),
@@ -89,13 +102,19 @@ class BookTitleImageScrollItemView extends StatelessWidget {
     Key? key,
     required this.imageURL,
     required this.bookTitle,
-    required this.booksVO ,
+    required this.booksVO,
     required this.onTap,
+    required this.deleteOnTap,
+    required this.tap,
+    required this.addToShelfOnTap,
   }) : super(key: key);
   final String imageURL;
   final String bookTitle;
   final BooksVO booksVO;
   final Function(BooksVO) onTap;
+  final Function(BooksVO) deleteOnTap;
+  final Function(BooksVO) tap;
+  final Function(BooksVO) addToShelfOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -117,6 +136,7 @@ class BookTitleImageScrollItemView extends StatelessWidget {
                       borderRadius: BorderRadius.circular(10),
                       child: GestureDetector(
                         onTap: () {
+                          tap(booksVO);
                           Navigator.of(context).push(MaterialPageRoute(
                               builder: (context) => const BookDetailPage()));
                         },
@@ -180,6 +200,22 @@ class BookTitleImageScrollItemView extends StatelessWidget {
                                           title: bookTitle,
                                           imageURL: imageURL,
                                           eBook: true,
+                                          onTap: () {
+                                            deleteOnTap(booksVO);
+                                            ScaffoldMessenger.of(context)
+                                                .showSnackBar(SnackBar(
+                                                    content: EasyText(
+                                                        text:
+                                                            '${booksVO.title ?? ''} has benn deleted from your book')));
+                                          },
+                                          addToShelfOnTap: () {
+                                            addToShelfOnTap(booksVO);
+                                            Navigator.of(context)
+                                                .push(MaterialPageRoute(
+                                              builder: (context) =>
+                                                  const AddToShelfPage(),
+                                            ));
+                                          },
                                         ));
                                   },
                                 );

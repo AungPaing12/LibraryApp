@@ -17,6 +17,7 @@ class EBookPage extends StatelessWidget {
         child: Selector<HomePageBloc, List<BookListsVO>?>(
           selector: (_, bloc) => bloc.getHomeScreenBookList,
           builder: (context, homeBookList, child) => ListView.builder(
+            physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
               scrollDirection: Axis.vertical,
               itemCount: homeBookList?.length,

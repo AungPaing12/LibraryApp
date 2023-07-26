@@ -13,7 +13,6 @@ class HomePageBloc extends ChangeNotifier {
 
   List<BookListsVO>? get getHomeScreenBookList => _homeScreenBookList;
 
-
   int get selectedIndex => _selectedIndex;
 
   void setIndex(int index) {
@@ -40,14 +39,19 @@ class HomePageBloc extends ChangeNotifier {
       }
       notifyListeners();
     });
-
   }
 
   saveBookHive(BooksVO? booksVO) {
     final bookHiveList =
         BookHiveVO(title: booksVO?.title, image: booksVO?.bookImage);
-    _libraryModel.save(bookHiveList);
-    print("title============>${bookHiveList.title}");
+    _libraryModel.saveInLibrary(bookHiveList);
+  }
+
+
+  deleteFromHive(BooksVO? booksVO) {
+    final bookHiveList =
+        BookHiveVO(title: booksVO?.title, image: booksVO?.bookImage);
+    _libraryModel.delete(bookHiveList);
   }
 
   @override

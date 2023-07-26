@@ -1,4 +1,3 @@
-
 import 'package:flutter/foundation.dart';
 import 'package:library_app/data/model/library_model.dart';
 import 'package:library_app/data/model/library_model_impl.dart';
@@ -12,13 +11,14 @@ class LibraryPageBloc extends ChangeNotifier {
 
   List<BookHiveVO> get getBookHiveList => _bookHiveList;
 
-  LibraryPageBloc(){
+  LibraryPageBloc() {
     _libraryModel.getBookHiveListFromDataBase().listen((event) {
-      if(event != null) {
+      if (event != null) {
         _bookHiveList = event;
       }
       notifyListeners();
     });
+
   }
 
   @override

@@ -3,6 +3,7 @@ import 'package:library_app/page/your_book.dart';
 import 'package:library_app/page/your_shelves.dart';
 
 import '../view_item/home_page_view_item.dart';
+import 'add_to_shelf_page.dart';
 
 class LibraryPage extends StatelessWidget {
   const LibraryPage({Key? key}) : super(key: key);
@@ -42,7 +43,7 @@ class LibraryPage extends StatelessWidget {
                   child: TabBarView(
                     children: [
                       YourBookPage(),
-                      YourShelves()
+                      AddToShelfPage()
                     ],
                   ),
                 ),

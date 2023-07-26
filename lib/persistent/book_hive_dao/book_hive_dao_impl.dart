@@ -27,4 +27,9 @@ class BookHiveDaoImpl extends BookHiveDao {
 
   @override
   Stream watchBookHiveBox() => _bookHiveVO().watch();
+
+  @override
+  void delete(BookHiveVO bookHiveVO) {
+    _bookHiveVO().delete(bookHiveVO.title);
+  }
 }

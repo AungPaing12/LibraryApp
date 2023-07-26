@@ -9,4 +9,5 @@ abstract class BookHiveDao {
 
   Stream watchBookHiveBox();
 
+  void delete(BookHiveVO bookHiveVO);
 }
